@@ -1,0 +1,95 @@
+{
+  "artifacts": [],
+  "command": "define_and_train",
+  "experiment": {
+    "base_dir": "c:\\Users\\rjrob\\CV_RNN",
+    "dependencies": [
+      "keras==2.10.0",
+      "matplotlib==3.6.2",
+      "numpy==1.23.5",
+      "pandas==1.5.2",
+      "PennyLane==0.28.0",
+      "sacred==0.8.4",
+      "tensorflow==2.10.0"
+    ],
+    "mainfile": "QLSTM_memory.py",
+    "name": "QLSTM_memory_experiment",
+    "repositories": [
+      {
+        "commit": "a04d9adcfb98420eb27e90ff943e414f10fb6277",
+        "dirty": true,
+        "url": "https://github.com/st4eve/CV_RNN.git"
+      }
+    ],
+    "sources": [
+      [
+        "QLSTM_memory.py",
+        "_sources\\QLSTM_memory_114d8627d8cf025285116f585b31112e.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\sacred\\config\\captured_function.py\", line 36, in captured_function\n    args, kwargs = wrapped.signature.construct_arguments(args, kwargs, options, bound)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\sacred\\config\\signature.py\", line 90, in construct_arguments\n    self._assert_no_missing_args(args, kwargs, bound)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\sacred\\config\\signature.py\", line 153, in _assert_no_missing_args\n    raise MissingConfigError(\n",
+    "sacred.utils.MissingConfigError: define_and_train is missing value(s): ['batch_size', 'epochs', 'units', 'cutoff']\n"
+  ],
+  "heartbeat": "2023-03-04T22:03:41.769802",
+  "host": {
+    "ENV": {},
+    "cpu": "AMD Ryzen 7 3750H with Radeon Vega Mobile Gfx",
+    "gpus": {
+      "driver_version": "512.78",
+      "gpus": [
+        {
+          "model": "NVIDIA GeForce GTX 1650",
+          "persistence_mode": false,
+          "total_memory": 4096
+        }
+      ]
+    },
+    "hostname": "Ryan",
+    "os": [
+      "Windows",
+      "Windows-10-10.0.19044-SP0"
+    ],
+    "python_version": "3.10.9"
+  },
+  "meta": {
+    "command": "define_and_train",
+    "config_updates": {},
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2023-03-04T22:03:41.747143",
+  "status": "FAILED",
+  "stop_time": "2023-03-04T22:03:41.771323"
+}

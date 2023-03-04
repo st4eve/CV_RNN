@@ -1,0 +1,17 @@
+{
+    "experiment_file": "QLSTM_memory.py",
+    "parameters": {
+        "BATCH_SIZE": [
+            1
+        ],
+        "NUM_EPOCHS": [
+            1
+        ],
+        "UNITS": [
+            2
+        ],
+        "CUTOFF": [
+            3
+        ]
+    }
+}
