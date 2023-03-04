@@ -423,10 +423,12 @@ class QuantumLayer_MultiQunode(keras.Model):
         return max_value
 
     def call(self, x):
-        x_split = list(tf.split(x, self.n_circuits, axis=1))
-        output = tf.concat(
-            [self.circuit_layer[i](x_split[i]) for i in range(self.n_circuits)], axis=1
-        )
+        #x_split = list(tf.split(x, self.n_circuits, axis=-1))
+        #output = tf.concat(
+        #    [self.circuit_layer[i](x_split[i]) for i in range(self.n_circuits)], axis=1
+        #)
+        print(self.circuit_layer[0])
+        output = self.circuit_layer[0](x)
         if self.trace_tracking:
             self.get_traces(x)
         return output
