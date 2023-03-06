@@ -38,6 +38,16 @@ class LSTM(tf.keras.layers.Layer):
         self.cutoff = cutoff
         self.dev = qml.device('strawberryfields.tf', wires=self.units, cutoff_dim=self.cutoff)
         
+        #Defining memory_update as a keras layer
+        weight_shapes= {}
+        qnode = self.build_qnode()
+
+        self.qlayer = qml.qnn.KerasLayer(qnode, 
+                                         weight_shapes=weight_shapes, 
+                                         output_dim=self.units,
+                                         trainable=False)
+        self.qnode = qnode
+        
         
         super(LSTM, self).__init__(**kwargs)
     
@@ -111,15 +121,6 @@ class LSTM(tf.keras.layers.Layer):
         
         self.built = True
         
-        #Defining memory_update as a keras layer
-        weight_shapes= {}
-        qnode = self.build_qnode()
-
-        self.qlayer = qml.qnn.KerasLayer(qnode, 
-                                         weight_shapes=weight_shapes, 
-                                         output_dim=self.units,
-                                         trainable=False)
-        self.qnode = qnode
 
     def call(self, inputs, states):
         h,c = states[0], states[1]
@@ -226,5 +227,5 @@ def define_and_train(_config):
     model.compile(optimizer=OPTIMIZER, loss=LOSS_FUNCTION, run_eagerly=True)
 
     # Train the model
-    model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs)
+    model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, callbacks=LogPerformance())
 
