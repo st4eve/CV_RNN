@@ -181,6 +181,7 @@ ex.captured_out_filter = apply_backspaces_and_linefeeds
 def log_performance(_run, logs, epoch, model):
     """Logs performance with sacred framework"""
     _run.log_scalar("loss", float(logs.get("loss")), epoch)
+    _run.log_scalar("accuracy", float(logs.get("accuracy")), epoch)
     _run.log_scalar("epoch", int(epoch), epoch)
     #model.save_weights(f"{EXPERIMENT_NAME}/{_run._id}/weights/weight{epoch}.ckpt")  # pylint: disable=W0212
 

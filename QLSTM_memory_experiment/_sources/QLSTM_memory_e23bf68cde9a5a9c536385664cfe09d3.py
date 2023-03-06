@@ -172,7 +172,7 @@ RANDOM_SEED = 30
 OPTIMIZER = "adam"
 LOSS_FUNCTION = "mean_squared_error"
 EXPERIMENT_NAME = "QLSTM_memory_experiment"
-ex = Experiment(EXPERIMENT_NAME, save_git_info=False)
+ex = Experiment(EXPERIMENT_NAME)
 ex.observers.append(FileStorageObserver(EXPERIMENT_NAME))
 ex.captured_out_filter = apply_backspaces_and_linefeeds
 
@@ -181,6 +181,7 @@ ex.captured_out_filter = apply_backspaces_and_linefeeds
 def log_performance(_run, logs, epoch, model):
     """Logs performance with sacred framework"""
     _run.log_scalar("loss", float(logs.get("loss")), epoch)
+    _run.log_scalar("accuracy", float(logs.get("accuracy")), epoch)
     _run.log_scalar("epoch", int(epoch), epoch)
     #model.save_weights(f"{EXPERIMENT_NAME}/{_run._id}/weights/weight{epoch}.ckpt")  # pylint: disable=W0212
 
@@ -190,8 +191,8 @@ class LogPerformance(Callback):
 
     def on_batch_end(self, epoch, logs=None):
         """Log key metrics on every 10 batches"""
-        log_performance(logs=logs, epoch=epoch, model=self.model)  # pylint: disable=E1120
-
+        if n%10 == 0:
+            log_performance(logs=logs, epoch=epoch, model=self.model)  # pylint: disable=E1120
 
 
 @ex.config

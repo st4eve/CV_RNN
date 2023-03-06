@@ -1,0 +1,5 @@
+C:\Users\rjrob\anaconda3\envs\cvqml\lib\site-packages\keras\initializers\initializers_v2.py:120: UserWarning: The initializer GlorotUniform is unseeded and being called multiple times, which will return identical values  each time (even if the initializer is unseeded). Please update your code to provide a seed to the initializer, or avoid using the same initalizer instance more than once.
+C:\Users\rjrob\anaconda3\envs\cvqml\lib\site-packages\strawberryfields\program.py:732: UserWarning: The circuit consists of 4 disconnected components.
+C:\Users\rjrob\anaconda3\envs\cvqml\lib\site-packages\strawberryfields\program.py:732: UserWarning: The circuit consists of 4 disconnected components.
+   1/1700 [..............................] - ETA: 25:02:57 - loss: 0.0745C:\Users\rjrob\anaconda3\envs\cvqml\lib\site-packages\strawberryfields\program.py:732: UserWarning: The circuit consists of 4 disconnected components.
+   2/1700 [..............................] - ETA: 16:43:49 - loss: 0.0571

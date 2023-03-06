@@ -1,0 +1,8 @@
+{
+  "BATCH_SIZE": 1,
+  "CUTOFF": 3,
+  "NUM_EPOCHS": 1,
+  "UNITS": 2,
+  "__doc__": "Default config",
+  "seed": 532639570
+}
