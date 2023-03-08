@@ -1,0 +1,109 @@
+{
+  "artifacts": [],
+  "command": "define_and_train",
+  "experiment": {
+    "base_dir": "c:\\Users\\rjrob\\CV_RNN",
+    "dependencies": [
+      "keras==2.10.0",
+      "matplotlib==3.6.2",
+      "numpy==1.23.5",
+      "pandas==1.5.2",
+      "PennyLane==0.28.0",
+      "sacred==0.8.4",
+      "tensorflow==2.10.0"
+    ],
+    "mainfile": "QLSTM_memory.py",
+    "name": "QLSTM_memory_experiment",
+    "repositories": [
+      {
+        "commit": "a04d9adcfb98420eb27e90ff943e414f10fb6277",
+        "dirty": true,
+        "url": "https://github.com/st4eve/CV_RNN.git"
+      }
+    ],
+    "sources": [
+      [
+        "QLSTM_memory.py",
+        "_sources\\QLSTM_memory_afb2c5d43520353b8e3ed0586b803153.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\sacred\\config\\captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"c:\\Users\\rjrob\\CV_RNN\\QLSTM_memory.py\", line 227, in define_and_train\n    model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\keras\\utils\\traceback_utils.py\", line 70, in error_handler\n    raise e.with_traceback(filtered_tb) from None\n",
+    "  File \"c:\\Users\\rjrob\\CV_RNN\\QLSTM_memory.py\", line 141, in call\n    c_list = self.qlayer(q_inputs)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\pennylane\\qnn\\keras.py\", line 302, in call\n    reconstructor.append(self.call(x))\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\pennylane\\qnn\\keras.py\", line 305, in call\n    return self._evaluate_qnode(inputs)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\pennylane\\qnn\\keras.py\", line 320, in _evaluate_qnode\n    return self.qnode(**kwargs)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\pennylane\\qnode.py\", line 847, in __call__\n    res = qml.execute(\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\pennylane\\interfaces\\execution.py\", line 651, in execute\n    qml.interfaces.cache_execute(\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\pennylane\\interfaces\\execution.py\", line 206, in wrapper\n    res = fn(execution_tapes.values(), **kwargs)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\pennylane\\interfaces\\execution.py\", line 131, in fn\n    return original_fn(tapes, **kwargs)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\contextlib.py\", line 79, in inner\n    return func(*args, **kwds)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\pennylane\\_device.py\", line 532, in batch_execute\n    self.reset()\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\pennylane_sf\\tf.py\", line 234, in reset\n    super().reset()\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\pennylane_sf\\simulator.py\", line 175, in reset\n    self.eng.reset()\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\strawberryfields\\engine.py\", line 416, in reset\n    self.backend.reset(**self.backend_options)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\strawberryfields\\backends\\tfbackend\\backend.py\", line 133, in reset\n    self._modemap.reset()\n",
+    "AttributeError: Exception encountered when calling layer \"keras_layer\" \"                 f\"(type KerasLayer).\n\n'NoneType' object has no attribute 'reset'\n\nCall arguments received by layer \"keras_layer\" \"                 f\"(type KerasLayer):\n  \u2022 inputs=tf.Tensor(shape=(1, 12), dtype=float32)\n"
+  ],
+  "heartbeat": "2023-03-04T22:17:37.386332",
+  "host": {
+    "ENV": {},
+    "cpu": "AMD Ryzen 7 3750H with Radeon Vega Mobile Gfx",
+    "gpus": {
+      "driver_version": "512.78",
+      "gpus": [
+        {
+          "model": "NVIDIA GeForce GTX 1650",
+          "persistence_mode": false,
+          "total_memory": 4096
+        }
+      ]
+    },
+    "hostname": "Ryan",
+    "os": [
+      "Windows",
+      "Windows-10-10.0.19044-SP0"
+    ],
+    "python_version": "3.10.9"
+  },
+  "meta": {
+    "command": "define_and_train",
+    "config_updates": {},
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2023-03-04T22:17:06.407609",
+  "status": "FAILED",
+  "stop_time": "2023-03-04T22:17:37.396157"
+}
