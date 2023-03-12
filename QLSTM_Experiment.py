@@ -19,7 +19,7 @@ from keras.callbacks import Callback
 from sacred import Experiment
 from sacred.observers import FileStorageObserver
 from sacred.utils import apply_backspaces_and_linefeeds
-
+from sklearn.preprocessing import MinMaxScaler
 
 tf.keras.backend.set_floatx('float32')
 #tf.config.list_physical_devices('GPU')
@@ -203,33 +203,43 @@ y_test = test_data[:, 101].reshape(450, 1)
 
 
 # ----------- SACRED EXPERIMENT ------------
+global n
 n = 1
 RANDOM_SEED = 30
 
 OPTIMIZER = "adam"
 LOSS_FUNCTION = "mean_squared_error"
-EXPERIMENT_NAME = "QLSTM_full_experiment"
+EXPERIMENT_NAME = "QLSTM_full_experiment_4"
 ex = Experiment(EXPERIMENT_NAME)
 ex.observers.append(FileStorageObserver(EXPERIMENT_NAME))
 ex.captured_out_filter = apply_backspaces_and_linefeeds
 
 
 @ex.capture
-def log_performance(_run, logs, epoch, model):
+def log_performance(_run, logs, batch, model):
     """Logs performance with sacred framework"""
-    _run.log_scalar("loss", float(logs.get("loss")), epoch)
-    _run.log_scalar("accuracy", float(logs.get("accuracy")), epoch)
-    _run.log_scalar("epoch", int(epoch), epoch)
+    _run.log_scalar("loss", float(logs.get("loss")), batch)
+    _run.log_scalar("batch", int(batch), batch)
 
+@ex.capture
+def log_result(_run, y_train, prediction, forecast, rmse1, rmse2):
+     _run.log_scalar("pred_err", float(rmse1), 0)
+     _run.log_scalar("fore_err", float(rmse2), 0)
+     y_train = np.squeeze(y_train)
+     np.save(f'./{EXPERIMENT_NAME}/{_run._id}/forecast.npy', forecast)
+     np.save(f'./{EXPERIMENT_NAME}/{_run._id}/prediction.npy', prediction)
+     np.save(f'./{EXPERIMENT_NAME}/{_run._id}/y_train.npy', y_train)
+ 
 
 class LogPerformance(Callback):
     """Logs performance"""
 
-    def on_batch_end(self, epoch, logs=None):
+    def on_batch_end(self, batch, logs=None):
+        global n
         """Log key metrics on every 10 batches"""
         if n%10 == 0:
-            log_performance(logs=logs, epoch=epoch, model=self.model)  # pylint: disable=E1120
-
+            log_performance(logs=logs, batch=batch, model=self.model)  # pylint: disable=E1120
+        n = n+1
 
 @ex.config
 def confnet_config():
@@ -276,4 +286,29 @@ def define_and_train(_config):
 
     # Train the model
     model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, callbacks=LogPerformance())
+    # Get the models predicted price values 
+    scaler = MinMaxScaler(feature_range=(0,1))
+    saler.scale_ = [0.00793138]
+    scaler.min_ = [-0.19533]
+    predictions = model.predict(x_test)
+    predictions = scaler.inverse_transform(predictions)
 
+    forecast = np.zeros([len(x_test), 1])
+    x_now = x_test[0].reshape(1,x_test.shape[1],1)
+    for i in range(len(forecast)):
+        x_ = model.predict(x_now)
+        forecast[i] = x_
+        x_now[:][:-1] = x_now[:][1:]
+        if (i%len(forecast) == 0):
+            x_now[:][-1] = x_test[i]
+        else:
+            x_now[:][-1] = x_
+
+
+    forecast = scaler.inverse_transform(forecast)
+    y_test = scaler.inverse_transform(y_test)
+    # Get the root mean squared error (RMSE)
+    rmse = np.sqrt(np.mean(((predictions - y_test) ** 2)))
+
+    rmse2 = np.sqrt(np.mean(((forecast - y_test) ** 2)))
+    log_result(y_train=y_train, prediction=predictions, forecast=forecast, rmse1=rmse, rmse2=rmse2)
