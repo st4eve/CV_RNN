@@ -1,0 +1,96 @@
+{
+  "artifacts": [],
+  "command": "define_and_train",
+  "experiment": {
+    "base_dir": "c:\\Users\\rjrob\\CV_RNN",
+    "dependencies": [
+      "keras==2.10.0",
+      "matplotlib==3.6.2",
+      "numpy==1.23.5",
+      "pandas==1.5.2",
+      "PennyLane==0.28.0",
+      "sacred==0.8.4",
+      "tensorflow==2.10.0"
+    ],
+    "mainfile": "QLSTM_memory.py",
+    "name": "QLSTM_memory_experiment",
+    "repositories": [
+      {
+        "commit": "a04d9adcfb98420eb27e90ff943e414f10fb6277",
+        "dirty": true,
+        "url": "https://github.com/st4eve/CV_RNN.git"
+      }
+    ],
+    "sources": [
+      [
+        "QLSTM_memory.py",
+        "_sources\\QLSTM_memory_5254c0337b99fa714f974bb22a32529e.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\sacred\\config\\captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"c:\\Users\\rjrob\\CV_RNN\\QLSTM_memory.py\", line 227, in define_and_train\n    model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs)\n",
+    "  File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\keras\\utils\\traceback_utils.py\", line 70, in error_handler\n    raise e.with_traceback(filtered_tb) from None\n",
+    "  File \"C:\\Users\\rjrob\\AppData\\Local\\Temp\\__autograph_generated_fileclo__nad.py\", line 15, in tf__train_function\n    retval_ = ag__.converted_call(ag__.ld(step_function), (ag__.ld(self), ag__.ld(iterator)), None, fscope)\n",
+    "ValueError: in user code:\n\n    File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\keras\\engine\\training.py\", line 1160, in train_function  *\n        return step_function(self, iterator)\n    File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\keras\\engine\\training.py\", line 1146, in step_function  **\n        outputs = model.distribute_strategy.run(run_step, args=(data,))\n    File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\keras\\engine\\training.py\", line 1135, in run_step  **\n        outputs = model.train_step(data)\n    File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\keras\\engine\\training.py\", line 993, in train_step\n        y_pred = self(x, training=True)\n    File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\keras\\utils\\traceback_utils.py\", line 70, in error_handler\n        raise e.with_traceback(filtered_tb) from None\n    File \"C:\\Users\\rjrob\\anaconda3\\envs\\cvqml\\lib\\site-packages\\keras\\backend.py\", line 4791, in rnn\n        input_.shape.with_rank_at_least(3)\n\n    ValueError: Exception encountered when calling layer \"rnn\" \"                 f\"(type RNN).\n    \n    Shape (100, 1) must have rank at least 3\n    \n    Call arguments received by layer \"rnn\" \"                 f\"(type RNN):\n      \u2022 inputs=tf.Tensor(shape=(1, 100), dtype=float32)\n      \u2022 mask=None\n      \u2022 training=True\n      \u2022 initial_state=None\n      \u2022 constants=None\n\n"
+  ],
+  "heartbeat": "2023-03-04T22:11:03.007735",
+  "host": {
+    "ENV": {},
+    "cpu": "AMD Ryzen 7 3750H with Radeon Vega Mobile Gfx",
+    "gpus": {
+      "driver_version": "512.78",
+      "gpus": [
+        {
+          "model": "NVIDIA GeForce GTX 1650",
+          "persistence_mode": false,
+          "total_memory": 4096
+        }
+      ]
+    },
+    "hostname": "Ryan",
+    "os": [
+      "Windows",
+      "Windows-10-10.0.19044-SP0"
+    ],
+    "python_version": "3.10.9"
+  },
+  "meta": {
+    "command": "define_and_train",
+    "config_updates": {},
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2023-03-04T22:10:54.160678",
+  "status": "FAILED",
+  "stop_time": "2023-03-04T22:11:03.015754"
+}

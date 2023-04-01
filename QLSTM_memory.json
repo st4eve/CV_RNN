@@ -1,0 +1,31 @@
+{
+    "experiment_file": "QLSTM_Experiment.py",
+    "parameters": {
+        "BATCH_SIZE": [
+            1
+        ],
+        "NUM_EPOCHS": [
+            1,
+            2
+        ],
+        "UNITS": [
+            2,
+            3,
+            4
+        ],
+        "CUTOFF": [
+            5,
+            10
+        ],
+        "QNN" : [
+            True,
+            False
+        ],
+        "QMEM" : [
+            True,
+            False
+        "BEAMSPLITTER" : [
+            True,
+            False
+    }
+}
